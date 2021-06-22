@@ -8,12 +8,22 @@ import Main from './MainSite'
 function App() {
   const[login, setlogin]=useState(false)
   const[postId, setPostId]=useState()
-  return (<Router>
+  
+  if(!login)
+  {
+    return (
+    <>
     <SignIn setlogin = {setlogin} setPostId = {setPostId}/>
     {login && <h1>{postId}</h1>}
-    <Route path='/MainSite' component = {Main}/>
-  </Router>
-  );
+  </>);
+  }else {
+    return (
+    <>
+    Main
+ </>
+  
+    );
+    }
 }
 
 export default App;
