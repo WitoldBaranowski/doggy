@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -7,10 +7,11 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-
+import App from "./App"
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -33,28 +34,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-async function  handleClick() {
-const requestOptions = {
-  method: 'POST',
-  headers: {
-  'Accept': 'application/json',
-  'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    username:"michal",
-    password:"1234",
-    email: "kasia.pasik@gmail.pl1"
-  })
-};
-const response = await fetch('http://localhost:8080/login/user', requestOptions);
-const data = await response.json();
-this.setState({  postId: data.id });
-}
 
 
-export default function SignIn() {
+export default function SignIn({setlogin,setPostId}) {
+
   const classes = useStyles();
-  
+
+  async function handleClick(e) {
+    e.preventDefault()
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username:"Arkadiusz",
+        password:"1234",
+        email: "kasia.pasik@gmail.pl1"
+      })
+    };
+    const response = await fetch('http://localhost:8080/login/user', requestOptions);
+    const data = await response.json();
+    console.log(data)
+    if(data.customerUsername!=null)
+      setlogin(true)
+    setPostId(data.customerUsername)
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -65,7 +71,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={handleClick} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -98,7 +104,6 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick = {handleClick}
           >
             Sign In
           </Button>
