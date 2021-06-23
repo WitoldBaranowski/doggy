@@ -39,13 +39,18 @@ public class UserService {
         }
     }
 
-    public void addNewUser(User user) {
+    public Response addNewUser(User user) {
         Optional<User> userOptional = userRepository.findUserByEmail(user.getEmail());
         if(userOptional.isPresent())
         {
-            throw new IllegalStateException("username taken");
+            return new Response();
         }
-        userRepository.save(user);
+        else
+        {
+            userRepository.save(user);
+            return new Response(user.getUsername());
+        }
+
     }
 
     public void deleteUser(String userUsername, String password) {

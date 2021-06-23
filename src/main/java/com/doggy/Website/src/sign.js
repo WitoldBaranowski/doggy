@@ -7,7 +7,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import App from "./App"
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -36,9 +35,16 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function SignIn({setlogin,setPostId}) {
+export default function SignIn({setlogin,setPostId,setsignup}) {
 
   const classes = useStyles();
+  const [email, setEmail] = useState('')
+  const [passwd, setPasswd] = useState('')
+
+  function signMeUp(){
+    setsignup(true)
+  }
+
 
   async function handleClick(e) {
     e.preventDefault()
@@ -49,9 +55,8 @@ export default function SignIn({setlogin,setPostId}) {
       'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        username:"Arkadiusz",
-        password:"1234",
-        email: "kasia.pasik@gmail.pl1"
+        password: passwd,
+        email: email
       })
     };
     const response = await fetch('http://localhost:8080/login/user', requestOptions);
@@ -82,6 +87,7 @@ export default function SignIn({setlogin,setPostId}) {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={event => setEmail(event.target.value)}
           />
           <TextField
             variant="outlined"
@@ -93,6 +99,7 @@ export default function SignIn({setlogin,setPostId}) {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={event => setPasswd(event.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -109,12 +116,9 @@ export default function SignIn({setlogin,setPostId}) {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="#" variant="body2" onClick = {signMeUp}>
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

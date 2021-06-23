@@ -3,27 +3,37 @@ import axios from 'axios'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import SignIn from './sign';
 import React,{useState} from 'react'
-import Main from './MainSite'
+import SignUp from './sign_up';
+import Blog from './main forum/Forum';
 
 function App() {
   const[login, setlogin]=useState(false)
   const[postId, setPostId]=useState()
-  
-  if(!login)
+  const[signup, setsignup] = useState(false)
+  if(!login&&!signup)
   {
     return (
-    <>
-    <SignIn setlogin = {setlogin} setPostId = {setPostId}/>
-    {login && <h1>{postId}</h1>}
-  </>);
-  }else {
-    return (
-    <>
-    Main
- </>
-  
+      <>
+        <SignIn setlogin = {setlogin} setPostId = {setPostId} setsignup = {setsignup}/>
+      {login && <h1>{postId}</h1>}
+      </>
     );
-    }
+  }
+  if(login) {
+    return (
+      <>
+      <Blog/>
+      </>
+    );
+  }
+  if(signup)
+  {
+    return (
+      <>
+      <SignUp setlogin = {setlogin} setsignup = {setsignup}/>
+      </>
+    );
+  }
 }
 
 export default App;

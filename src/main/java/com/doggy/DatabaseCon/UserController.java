@@ -28,6 +28,11 @@ public class UserController {
         return userService.logUser(user);
     }
 
+    @PostMapping("register")
+    public Response addNewUserToDb(@RequestBody User user){
+        return userService.addNewUser(user);
+    }
+
     @DeleteMapping(value = "{userUsername}/{password}")
     public void deleteUser(@PathVariable(value ="userUsername")String userUsername,
                            @PathVariable(value ="password")String password){
