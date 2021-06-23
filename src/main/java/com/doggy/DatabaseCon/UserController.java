@@ -17,7 +17,7 @@ public class UserController {
     }
     @GetMapping("{username}/{password}")
     public Optional<User> getUser(@PathVariable(value ="username")String username,
-                                                           @PathVariable(value ="password")String password) {
+                                  @PathVariable(value ="password")String password) {
 
         return userService.getUser(username,password);
     }
