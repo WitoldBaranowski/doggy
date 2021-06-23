@@ -20,6 +20,10 @@ public class Comments {
         this.username = username;
         this.comment = comment;
     }
+    public Comments(String username, String comment){
+        this.username = username;
+        this.comment = comment;
+    }
 
     public Comments() {
 

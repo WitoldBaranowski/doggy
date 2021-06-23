@@ -35,15 +35,16 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function SignIn({setlogin,setPostId,setsignup}) {
+export default function SignIn({setlogin,setPostId,setsignup,setUsernam}) {
 
   const classes = useStyles();
   const [email, setEmail] = useState('')
   const [passwd, setPasswd] = useState('')
-
+  
   function signMeUp(){
     setsignup(true)
   }
+
 
 
   async function handleClick(e) {
@@ -63,7 +64,11 @@ export default function SignIn({setlogin,setPostId,setsignup}) {
     const data = await response.json();
     console.log(data)
     if(data.customerUsername!=null)
+    {
       setlogin(true)
+      setUsernam(data.customerUsername)
+    }
+     
     setPostId(data.customerUsername)
   }
 

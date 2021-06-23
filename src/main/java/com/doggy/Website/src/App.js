@@ -4,17 +4,18 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 import SignIn from './sign';
 import React,{useState} from 'react'
 import SignUp from './sign_up';
-import Blog from './main forum/Forum';
+import Forum from './main forum/Forum';
 
 function App() {
   const[login, setlogin]=useState(false)
   const[postId, setPostId]=useState()
   const[signup, setsignup] = useState(false)
+  const[usernam, setUsernam] = useState('')
   if(!login&&!signup)
   {
     return (
       <>
-        <SignIn setlogin = {setlogin} setPostId = {setPostId} setsignup = {setsignup}/>
+        <SignIn setlogin = {setlogin} setPostId = {setPostId} setsignup = {setsignup} setUsernam = {setUsernam}/>
       {login && <h1>{postId}</h1>}
       </>
     );
@@ -22,7 +23,7 @@ function App() {
   if(login) {
     return (
       <>
-      <Blog/>
+      <Forum usernam = {usernam}/>
       </>
     );
   }
