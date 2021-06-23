@@ -4,6 +4,7 @@ import com.doggy.DatabaseCon.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class ComsController {
     }
 
     @PostMapping()
-    public ComsResponse resWithCom(@RequestBody Comments comments){
+    public ComsResponse resWithCom(@RequestBody Comments comments) throws IOException {
         return comsService.addNewComment(comments);
     }
 

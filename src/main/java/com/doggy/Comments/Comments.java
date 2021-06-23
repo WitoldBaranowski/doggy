@@ -24,6 +24,9 @@ public class Comments {
         this.username = username;
         this.comment = comment;
     }
+    public Comments(String comment){
+        this.comment = comment;
+    }
 
     public Comments() {
 

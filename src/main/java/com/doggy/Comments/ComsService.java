@@ -6,6 +6,7 @@ import com.doggy.DatabaseCon.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.Optional;
 
 @Service
@@ -16,9 +17,13 @@ public class ComsService {
         this.comRepository = comRepository;
     }
 
-    public ComsResponse addNewComment(Comments comments) {
-
-            comRepository.save(comments);
+    public ComsResponse addNewComment(Comments comments) throws IOException {
+            if(comments.getUsername()!=null)
+            {
+                GetPicture getPicture = new GetPicture();
+                comments.setDoggolink(getPicture.returnPics());
+                comRepository.save(comments);
+            }
             return new ComsResponse(comRepository.findAll());
     }
 
