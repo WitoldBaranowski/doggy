@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 public interface ComRepository extends JpaRepository<Comments,Long> {
     @Query("SELECT s FROM Comments s where s.id = ?1")
-    Optional<Comments> findCommentByByid(Long id);
+    Optional<Comments> findCommentByid(Long id);
 
 }

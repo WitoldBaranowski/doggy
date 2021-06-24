@@ -24,5 +24,9 @@ public class ComsController {
     public ComsResponse resWithCom(@RequestBody Comments comments) throws IOException {
         return comsService.addNewComment(comments);
     }
+    @PostMapping(path = "del")
+    public ComsResponse delOneCom(@RequestBody Comments comments){
+        return comsService.delNewComment(comments);
+    }
 
 }

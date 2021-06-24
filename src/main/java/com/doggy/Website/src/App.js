@@ -1,6 +1,4 @@
 import './App.css';
-import axios from 'axios'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
 import SignIn from './sign';
 import React,{useState} from 'react'
 import SignUp from './sign_up';
@@ -31,7 +29,7 @@ function App() {
   {
     return (
       <>
-      <SignUp setlogin = {setlogin} setsignup = {setsignup}/>
+      <SignUp setlogin = {setlogin} setsignup = {setsignup} setUsernam = {setUsernam}/>
       </>
     );
   }

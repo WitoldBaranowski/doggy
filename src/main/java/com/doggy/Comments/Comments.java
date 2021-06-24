@@ -14,7 +14,6 @@ public class Comments {
     private String username;
     private String comment;
 
-
     public Comments(String doggolink, String username, String comment) {
         this.doggolink = doggolink;
         this.username = username;
@@ -24,6 +23,12 @@ public class Comments {
         this.username = username;
         this.comment = comment;
     }
+
+    public Comments(Long id, String username) {
+        this.id = id;
+        this.username = username;
+    }
+
     public Comments(String comment){
         this.comment = comment;
     }
