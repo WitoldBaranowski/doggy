@@ -60,7 +60,7 @@ export default function SignIn({setlogin,setPostId,setsignup,setUsernam}) {
         email: email
       })
     };
-    const response = await fetch('http://localhost:8080/login/user', requestOptions);
+    const response = await fetch('https://doggysapp.herokuapp.com/login/user', requestOptions);
     const data = await response.json();
     console.log(data)
     if(data.customerUsername!=null)
