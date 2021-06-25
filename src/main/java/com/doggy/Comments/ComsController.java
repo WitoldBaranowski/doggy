@@ -28,5 +28,9 @@ public class ComsController {
     public ComsResponse delOneCom(@RequestBody Comments comments){
         return comsService.delNewComment(comments);
     }
+    @PostMapping(path = "change")
+    public ComsResponse updateMyComs(@RequestBody Comments comments){
+        return comsService.updateComs(comments);
+    }
 
 }

@@ -69,15 +69,5 @@ public class UserService {
     }
 
 
-    @Transactional
-    public void updateUser(Long userId, String username, String password) {
-        User user =userRepository.findById(userId).orElseThrow(()-> new IllegalStateException("student with that id does not exist"));
-        if(username != null && username.length() > 0 &&!Objects.equals(user.getUsername(),username)){
-            user.setUsername(username);
-        }
-        if(password != null && password.length() > 0 ){
-            user.setPassword(password);
-        }
 
-    }
 }

@@ -33,13 +33,6 @@ public class UserController {
         userService.deleteUser(userUsername,password);
     }
 
-    @PutMapping(path = "{userId}")
-    public void updateUser(
-            @PathVariable("userId") Long userId,
-            @RequestParam(required = false) String username,
-            @RequestParam(required = false) String password){
-        userService.updateUser(userId, username,password);
-    }
 
 
 }
